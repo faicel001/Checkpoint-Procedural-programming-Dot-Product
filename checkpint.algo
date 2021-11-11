@@ -1,0 +1,134 @@
+//1
+PROCEDURE dot_product(v1:ARRAY_OF FLOAT,v2: ARRAY_OF FLOAT,var ps:FLOAT)
+VAR
+    j:INTEGER
+BEGIN
+    FOR j FROM 0 TO 2  DO
+        ps:=ps+v1(j)*v2(j)
+    END_FOR
+END
+ALGORITHM Dot product
+VAR
+    u : ARRAY_OF FLOAT type[3];
+    v : ARRAY_OF FLOAT type[3];
+    i,ps:INTEGER
+BEGIN
+    FOR i FROM 0 TO 2  DO
+    write("donner le'elemen n",i+1,": ")
+    read(u(i))
+    write("donner le'elemen n",i+1,": ")
+    read(v(i))
+    END_FOR
+    ps:=0;
+    dot_product(u,v,ps);
+END
+
+
+
+
+
+//2
+PROCEDURE dot_product(v1:ARRAY_OF FLOAT,v2: ARRAY_OF FLOAT,var ps:FLOAT)
+VAR
+    j:INTEGER
+BEGIN
+    FOR j FROM 0 TO 2  DO
+        ps:=ps+v1(j)*v2(j)
+    END_FOR
+END
+ALGORITHM Dot product
+VAR
+    x :	STRUCT
+                        elem1 : ARRAY_OF FLOAT;
+                        elem2 : ARRAY_OF FLOAT;
+                        res   : FLOAT;
+                    END_STRUCT
+    u : ARRAY_OF FLOAT type[3];
+    v : ARRAY_OF FLOAT type[3];
+    t : ARRAY_OF FLOAT type[50];
+    i,j,z,a,b,ps:INTEGER
+BEGIN
+write("donner le nbr de couple de vecteurs")
+read(n)
+i:=0
+    FOR j FROM 0 TO n-1  DO
+    for z FROM 0 TO 2 DO
+    WHILE (i<3) DO
+    write("donner le'elemen n",i+1,": ")
+    read(u(i))
+    x.elem1:=u(i)
+    write("donner le'elemen n",i+1,": ")
+    read(v(i))
+    x.elem2:=v(i)
+    END_WHILE
+    x.elem1:=u(i)
+    x.elem2:=v(i)
+    END_FOR
+    t(j):=x
+    END_FOR
+    ps:=0;
+    FOR j FROM 0 TO n-1 DO
+        a:=t(j).elem1
+        b:=t(j).elem2
+        dot_product(a,b,ps);
+        t(j).res:=ps
+    END_FOR
+    FOR j FROM 0 TO n-1 DO
+        write("le produit de ",t(j).elem1,"*",t(j).elem2,"est = ",t(j).res)
+    END_FOR
+    
+END
+
+
+
+
+
+
+//3
+FUNCTION dot_product(v1:ARRAY_OF FLOAT,v2: ARRAY_OF FLOAT) : FLOAT
+VAR
+    j,ps:INTEGER
+BEGIN
+    FOR j FROM 0 TO 2  DO
+        ps:=ps+v1(j)*v2(j)
+    END_FOR
+    RETURN ps ;
+END
+ALGORITHM Dot product
+VAR
+    x :	STRUCT
+                        elem1 : ARRAY_OF FLOAT;
+                        elem2 : ARRAY_OF FLOAT;
+                        res   : FLOAT;
+                    END_STRUCT
+    u : ARRAY_OF FLOAT type[3];
+    v : ARRAY_OF FLOAT type[3];
+    t : ARRAY_OF FLOAT type[50];
+    i,j,z,a,b,p:INTEGER
+BEGIN
+write("donner le nbr de couple de vecteurs")
+read(n)
+i:=0
+    FOR j FROM 0 TO n-1  DO
+    for z FROM 0 TO 2 DO
+    WHILE (i<3) DO
+    write("donner le'elemen n",i+1,": ")
+    read(u(i))
+    write("donner le'elemen n",i+1,": ")
+    read(v(i))
+    END_WHILE
+    x.elem1:=u(i)
+    x.elem2:=v(i)
+    END_FOR
+    t(j):=x
+    END_FOR
+    p:=0;
+    FOR j FROM 0 TO n-1 DO
+        a:=t(j).elem1
+        b:=t(j).elem2
+        p:=dot_product(a,b);
+        t(j).res:=p
+    END_FOR
+    FOR j FROM 0 TO n-1 DO
+        write("le produit de ",t(j).elem1,"*",t(j).elem2,"est = ",t(j).res)
+    END_FOR
